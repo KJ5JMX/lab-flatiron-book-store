@@ -44,4 +44,42 @@ const bookStore = {
 }
 
 // Write your code here!
+//making sure it loads after the DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM fully loaded');
 
+const bookStoreTitle = document.getElementById('header');
+
+//getting the book store name
+bookStoreTitle.textContent = bookStore.name;
+
+//getting the book list
+const bookList = document.getElementById('book-list');//stupid "-" making this take WAY LONGER THAN IT SHOUD HAVE BEEN
+
+//changing the book list stuff for each book to be what is here already.
+bookStore.books.forEach((book) => {
+    //creating the book container and its elements
+    const bookContainer = document.createElement('li');
+    console.log('created elements for:', book.title);
+
+        const bookTitle = document.createElement('h3');
+            bookTitle.textContent = book.title;
+                bookContainer.appendChild(bookTitle);
+
+    //creating the author and image elements
+    const bookAuthor = document.createElement('p');
+            bookAuthor.textContent = `by ${book.author}`;
+                bookContainer.appendChild(bookAuthor);
+
+
+    const bookImage = document.createElement('img');
+            bookImage.src = book.imageUrl; 
+            bookImage.alt = `${book.title} cover image`;
+                bookContainer.appendChild(bookImage);
+
+    bookList.appendChild(bookContainer);
+
+
+});
+
+});
